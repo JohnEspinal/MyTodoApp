@@ -54,6 +54,7 @@ namespace MyTodoApp.Controllers
             if (ModelState.IsValid)
             {
                 note.Id = Guid.NewGuid();
+                note.CreationDate = DateTime.Now;
                 db.Note.Add(note);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -72,6 +73,7 @@ namespace MyTodoApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Note note = db.Note.Find(id);
+            note.CreationDate = DateTime.Now;
             if (note == null)
             {
                 return HttpNotFound();

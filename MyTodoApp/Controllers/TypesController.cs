@@ -50,6 +50,7 @@ namespace MyTodoApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                type.CreationDate = DateTime.Now;
                 type.Id = Guid.NewGuid();
                 db.Type.Add(type);
                 db.SaveChanges();
@@ -67,6 +68,7 @@ namespace MyTodoApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Type type = db.Type.Find(id);
+            type.CreationDate = DateTime.Now;
             if (type == null)
             {
                 return HttpNotFound();

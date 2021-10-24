@@ -51,6 +51,7 @@ namespace MyTodoApp.Controllers
             if (ModelState.IsValid)
             {
                 user.Id = Guid.NewGuid();
+                user.CreationDate = DateTime.Now;
                 db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -67,6 +68,7 @@ namespace MyTodoApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = db.User.Find(id);
+            user.CreationDate = DateTime.Now;
             if (user == null)
             {
                 return HttpNotFound();
