@@ -86,6 +86,7 @@ namespace MyTodoApp.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
+                user.CreationDate = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
