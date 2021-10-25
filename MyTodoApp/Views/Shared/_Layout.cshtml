@@ -5,16 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    <style>
-        li #availableusers:hover {
-            color: red !important;
-            text-decoration: none !important;
-        }
-    </style>
+
     @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        my-class {
+            color: #333333
+        }
+
+            a.my-class:active {
+                color: #666666
+            }
+
+            a.my-class:link {
+                color: #999999
+            }
+
+            a.my-class:visited {
+                color: #CCCCCC
+            }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2ECD71">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #333333">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,13 +35,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("TodoApp", "Index", "Notes", new { area = "" }, new { @class = "navbar-brand", @style = "color:black; font-weight: bold; :hover{color:white;}"})
+                @Html.ActionLink("TodoApp", "Index", "Notes", new { area = "" }, new { @class = "navbar-brand", @style = "color:white; font-weight: bold;"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="color:black;">
                     <li>@Html.ActionLink("Available Users", "Index", "Users")</li>
                     <li>@Html.ActionLink("Types Settings", "Index", "Types")</li>
-                    <li>@Html.ActionLink("About Us", "AboutUs", "AboutUs")</li>
+                    <li>@Html.ActionLink("About Us", "Index", "AboutUs")</li>
                 </ul>
             </div>
         </div>
@@ -44,5 +57,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $('#nav li a').click(function () {
+                $('#nav li').removeClass();
+                $($(this).attr('href')).addClass('active');
+            });
+        });
+    </script>
 </body>
 </html>
